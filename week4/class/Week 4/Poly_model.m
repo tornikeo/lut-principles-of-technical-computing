@@ -1,0 +1,49 @@
+clear all; close all; clc
+
+%Polynomial fits: use y_p2 as ydata for the degree-2 polynomial fit and y_p4 for the
+%degree-2 polynomial fit. The same x data defined below works for both models.
+
+load('poly_data.mat')
+x = linspace(-5, 5, 100); 
+
+%% Fit a quadratic polynomial to the data y_p2
+
+% Plot the synthetic data
+figure;
+scatter(x, y_p2, 'o');
+xlabel('X');
+ylabel('Y');
+
+degree = 2; % Degree of the polynomial 
+p = polyfit(x, y_p2, degree);
+
+% Generate the fitted polynomial values
+y_fit = polyval(p, x);
+
+% Plot the data and the fitted polynomial
+hold on;
+plot(x, y_fit, 'r', 'LineWidth', 2);
+legend('Data', 'Quadratic Fit');
+hold off;
+
+%%  Fit a degree-4 polynomial to the data y_p4
+% Plot the synthetic data
+figure;
+scatter(x,y_p4, 'o');
+xlabel('X');
+ylabel('Y');
+title('Synthetic Data');
+
+
+degree = 4; % Degree of the polynomial
+p = polyfit(x, y_p4, degree);
+
+% Generate the fitted polynomial values
+y_fit = polyval(p, x);
+
+% Plot the data and the fitted polynomial
+hold on;
+plot(x, y_fit, 'r', 'LineWidth', 2);
+legend('Data', 'Degree-4 Polynomial Fit');
+hold off;
+
